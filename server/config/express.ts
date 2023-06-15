@@ -1,7 +1,7 @@
 import express, { Express } from "express";
 import helmet from "helmet";
 import BodyParser from "body-parser";
-// import session from "cookie-session";
+import session from "cookie-session";
 import cors from "cors";
 import router from "../api/routes";
 const app: Express = express();
