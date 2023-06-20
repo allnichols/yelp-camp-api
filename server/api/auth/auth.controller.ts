@@ -8,9 +8,10 @@ export async function signup(req:Request, res:Response, next:NextFunction) {
         console.log(user);
         if(user != null) {
             res.status(201).send({ email: user.email, id: user.id });
-        } else {
-            res.status(400).send({ error: 'User already exists' });
+        } else if(user.error === 'User already exists') {
+            res.status(400).send({ message: user.message });
         }
+        
     } catch (error) {
         console.log(error);
     }
