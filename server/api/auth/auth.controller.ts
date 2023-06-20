@@ -19,9 +19,9 @@ export async function signup(req:Request, res:Response, next:NextFunction) {
 }
 
 export function login(req:Request, res:Response, next:NextFunction) {
-    res.send('Hello login!');
+    res.json('login route!');
 }
 
 export function logout(req:Request, res:Response, next:NextFunction) {
-    res.send('Hello logout!');
+    res.json('Hello logout!');
 }
