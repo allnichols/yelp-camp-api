@@ -45,13 +45,13 @@ passport.use(
          });
 
         if(!user) {
-             return done({ message: 'User not found' }, false, { message: 'User not found' });
+             return done({ message: 'User not found' }, false);
         }
 
         const isMatch = await bycrypt.compare(password, user.password);
 
         if(!isMatch) {
-            return done({ message: 'Incorrect password' }, false, { message: 'Incorrect password' });
+            return done({ message: 'Incorrect password' }, false);
         }
 
         console.log(user);
