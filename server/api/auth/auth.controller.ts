@@ -15,7 +15,6 @@ export async function signup(req:Request, res:Response, next:NextFunction) {
     } catch (error) {
         console.log(error);
     }
-    // res.status(201).send({ email, password });
 }
 
 export function login(req:Request, res:Response, next:NextFunction) {
