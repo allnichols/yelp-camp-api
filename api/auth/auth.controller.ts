@@ -31,6 +31,12 @@ export async function login(req:Request, res:Response, next:NextFunction) {
     }
 }
 
-export function logout(req:Request, res:Response, next:NextFunction) {
-    res.json('Hello logout!');
+export async function logout(req:Request, res:Response, next:NextFunction) {
+    try {
+        req.logOut();
+        console.log('User logged out', req.session?.isChanged);
+        res.status(200).send({ message: 'User logged out' });
+    } catch (error) {
+        console.error(error);
+    }
 }
