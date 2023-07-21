@@ -33,9 +33,16 @@ export async function login(req:Request, res:Response, next:NextFunction) {
 
 export async function logout(req:Request, res:Response, next:NextFunction) {
     try {
-        req.logOut();
-        console.log('User logged out', req.session?.isChanged);
-        res.status(200).send({ message: 'User logged out' });
+        req.logout(
+            (err:any) => {
+                if(err) {
+                    console.error(err);
+                }
+            }
+        );
+        req.session = null;
+        res.status(200).send({ message: 'Logout successful' });
+
     } catch (error) {
         console.error(error);
     }
