@@ -36,3 +36,23 @@ export async function getUserById(id: number) {
         await prisma.$disconnect();
     }
 };
+
+export async function updateUserById(id:number, userInfo:object) {
+    try {
+        const user = await prisma.user.update({
+            where: {
+                id
+            },
+            data: {
+                ...userInfo
+            }
+        });
+        console.log(user);
+        return { user, success: true };
+    } catch (error) {
+        console.error(error);
+        throw new Error('Error updating user');
+    } finally {
+        await prisma.$disconnect();
+    }
+}

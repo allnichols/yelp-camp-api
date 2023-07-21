@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { getAllUsers, getUserById } from './user.service';
+import { getAllUsers, getUserById, updateUserById } from './user.service';
 
 
 export async function getUser(req:Request, res:Response, next:NextFunction) {
@@ -24,5 +24,22 @@ export async function getUsers(req:Request, res:Response, next:NextFunction) {
         res.status(200).send(users);
     } catch (error) {
         console.error(error);
+    }
+}
+
+export async function updateUser(req:Request, res:Response, next:NextFunction) {
+    const { userID } = req.params;
+    const userInfo = req.body;
+    console.log(userInfo);
+    try {
+        const user = await updateUserById(parseInt(userID), userInfo);
+        if(user?.success) {
+            res.status(200).send({ message: 'User updated successfully' });
+        } else if(user?.success === false) {
+            res.status(400).send({ message: 'error updating user' });
+        }
+    } catch (error) {
+        console.error(error);
+        throw new Error('Error updating user');
     }
 }
