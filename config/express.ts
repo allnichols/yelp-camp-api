@@ -21,22 +21,6 @@ app.use(BodyParser.urlencoded({ extended: true }));
 // secure apps by setting various HTTP headers
 app.use(helmet());
 
-// temporary to solve req.session.regenerate is not a function
-// app.use((req:Request, res:Response, next:NextFunction) => {
-//     if (req.session && !req.session.regenerate) {
-//         req.session.regenerate = (cb:any) => {
-//             cb()
-//         }
-//     }
-//     if(req.session && !req.session.save) {
-//         req.session.save = (cb:any) => {
-//             cb()
-//         }
-//     }
-//     next();
-// });
-
-
 app.use(cookieSession({
     secret: 'secret',
     name: 'session',
