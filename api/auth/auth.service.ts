@@ -30,6 +30,7 @@ export async function signupService(email:string, password:string):Promise<{ ema
 
     } catch (error) {
         console.error(error);
+        return;
     } finally {
         await prisma.$disconnect();
     }

@@ -6,6 +6,7 @@ import cors from "cors";
 import passport from "passport";
 import router from "../api/routes";
 import "../api/auth/strategy/localAuth"
+import { errorLogger, errorMiddleware } from "../middleware/error";
 
 
 const app: Express = express();
@@ -31,6 +32,10 @@ app.use((req:Request, res:Response, next:NextFunction) => {
     console.log(`${req.method}:${req.url}`);
     next(); 
 });
+
+app.use(errorLogger);
+
+app.use(errorMiddleware);
 
 app.use(passport.initialize());
 app.use(passport.session());

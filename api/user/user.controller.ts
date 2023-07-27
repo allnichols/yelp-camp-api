@@ -15,6 +15,7 @@ export async function getUser(req:Request, res:Response, next:NextFunction) {
         }
     } catch (error) {
         console.error(error);
+        next(error);
     }
 }
 
@@ -24,13 +25,13 @@ export async function getUsers(req:Request, res:Response, next:NextFunction) {
         res.status(200).send(users);
     } catch (error) {
         console.error(error);
+        next(error);
     }
 }
 
 export async function updateUser(req:Request, res:Response, next:NextFunction) {
     const { userID } = req.params;
     const userInfo = req.body;
-    console.log(userInfo);
     try {
         const user = await updateUserById(parseInt(userID), userInfo);
         if(user?.success) {
@@ -40,6 +41,6 @@ export async function updateUser(req:Request, res:Response, next:NextFunction) {
         }
     } catch (error) {
         console.error(error);
-        throw new Error('Error updating user');
+        next(error);
     }
 }

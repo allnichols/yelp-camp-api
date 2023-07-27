@@ -1,6 +1,4 @@
-import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
-import campsRoutes from './camps/camps.routes';
 import app from '../config/express';
 
 dotenv.config();
